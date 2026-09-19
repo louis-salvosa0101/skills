@@ -1,4 +1,5 @@
-name: workflow-router
-description: Ask which skill or flow fits your situation. A router over the skills in this repo.
+interface:
+  display_name: "Workflow Router"
+  short_description: "Find the right skill or workflow"
 policy:
   allow_implicit_invocation: false

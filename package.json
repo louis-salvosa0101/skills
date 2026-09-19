@@ -1,11 +1,11 @@
 {
-  "name": "louis-salvosa-agent-skills",
+  "name": "agentic-coding-skills",
   "version": "1.2.3",
   "private": true,
-  "description": "Louis Salvosa's focused agent skills for real engineering",
+  "description": "Louis Salvosa's agent skills for real engineering",
   "repository": {
     "type": "git",
-    "url": "https://github.com/louis-salvosa0101/matt-agent-skills"
+    "url": "https://github.com/louis-salvosa0101/agentic-coding-skills"
   },
   "license": "MIT",
   "scripts": {

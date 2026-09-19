@@ -15,14 +15,15 @@ set -euo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
 
-# Collect the repo's skills once, link into every destination.
+# Collect the repo's skills once, linking every skill in the two shipped
+# buckets into every destination.
 names=()
 srcs=()
 while IFS= read -r -d '' skill_md; do
   src="$(dirname "$skill_md")"
   names+=("$(basename "$src")")
   srcs+=("$src")
-done < <(find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -not -path '*/deprecated/*' -print0)
+done < <(find "$REPO/skills" -name SKILL.md -not -path '*/node_modules/*' -print0)
 
 for DEST in "${DESTS[@]}"; do
   # If $DEST is a symlink that resolves into this repo, we'd end up writing the

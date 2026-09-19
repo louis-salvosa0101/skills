@@ -18,26 +18,9 @@ The two branches produce very different artifacts, so getting this wrong wastes 
 
 ## Rules that apply to both
 
-1. **Throwaway from day one, and clearly marked as such.** Locate the prototype code close to where it will actually be used (next to the module or page it's prototyping for) so context is obvious, but name it unmistakably (e.g. include the word `prototype` in the filename or directory). Add a prominent comment at the top of every file: `// PROTOTYPE: throwaway code. Do not ship.`
-
-2. **The question lives at the top.** Before writing any code, write down what question this prototype is answering. One sentence, visible in the UI (not just in a comment). A prototype that answers the wrong question is pure waste.
-
-3. **No production dependencies.** A prototype must not touch the production database, call real third-party services, or modify shared state. Use local stubs, fixtures, or in-memory state only.
-
-4. **The prototype ends with a decision.** After the user has seen and used the prototype, document the decision it produced: what was learned, what was confirmed, what was ruled out. This feeds into `/to-spec` or the grilling thread. The prototype code is then deleted or clearly marked archived.
-
-## Integration with the main flow
-
-```
-unknown / design question
-    ↓
-prototype
-    ↓
-observe & evaluate
-    ↓
-decision documented
-    ↓
-grill-with-docs / to-spec
-```
-
-A prototype is not a ticket. It's not something to implement. It's an experiment that produces a decision, and that decision enters the spec.
+1. **Throwaway from day one, and clearly marked as such.** Locate the prototype code close to where it will actually be used (next to the module or page it's prototyping for) so context is obvious, but name it so a casual reader can see it's a prototype, not production. For throwaway UI routes, obey whatever routing convention the project already uses; don't invent a new top-level structure.
+2. **Trivial to run.** A UI prototype starts from one command in the project's task runner: `pnpm <name>`, `python <path>`, `bun <path>`, etc. A logic demo is a single HTML file the user double-clicks. Either way, no thinking required to start it.
+3. **No persistence by default.** State lives in memory. Persistence is the thing the prototype is _checking_, not something it should depend on. If the question explicitly involves a database, hit a scratch DB or a local file with a clear "PROTOTYPE, wipe me" name.
+4. **Skip the polish.** No tests, no error handling beyond what makes the prototype _runnable_, no abstractions. The point is to learn something fast.
+5. **Surface the state.** After every action (logic) or on every variant switch (UI), print or render the full relevant state so the user can see what changed.
+6. **Capture it when done.** Fold any validated decision into the real code, then capture the prototype itself as a **primary source**: commit it to a throwaway branch, out of main, and leave a context pointer to that branch on the implementation issue. Capture the answer too (the verdict and the question it settled) in the issue or a commit. The main branch keeps only the validated decision.

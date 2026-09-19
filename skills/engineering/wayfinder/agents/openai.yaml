@@ -1,4 +1,5 @@
-name: wayfinder
-description: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.
+interface:
+  display_name: "Wayfinder"
+  short_description: "Map a large effort as decision tickets"
 policy:
   allow_implicit_invocation: false

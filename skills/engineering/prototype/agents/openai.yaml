@@ -1,2 +1,3 @@
-name: prototype
-description: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.
+interface:
+  display_name: "Prototype"
+  short_description: "Prototype to answer a design question"

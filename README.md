@@ -1,104 +1,53 @@
 # Agentic Coding Skills
 
-A focused, highly opinionated collection of agent skills implementing a complete end-to-end engineering workflow.
+A complete, project-neutral collection of engineering and productivity skills for coding agents.
 
-This repository provides a coherent software-development methodology built for coding agents (Claude Code, Codex, Cursor, Antigravity, etc.). It brings the core Engineering capabilities of Matt Pocock's skills repository to full functional parity while maintaining a clean, project-neutral architecture and strict engineering focus.
+## Engineering
 
----
+### User-invoked
 
-## Architecture & Concepts
+- [workflow-router](./skills/engineering/workflow-router/SKILL.md): route a request to the right flow.
+- [grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md): clarify a change while updating project language and decisions.
+- [triage](./skills/engineering/triage/SKILL.md): turn incoming issues into agent-ready work.
+- [wayfinder](./skills/engineering/wayfinder/SKILL.md): plan a large, multi-session effort.
+- [setup-skills](./skills/engineering/setup-skills/SKILL.md): configure the project tracker and documentation layout.
+- [to-spec](./skills/engineering/to-spec/SKILL.md): turn conversation into a specification.
+- [to-tickets](./skills/engineering/to-tickets/SKILL.md): split a specification into blocking implementation tickets.
+- [implement](./skills/engineering/implement/SKILL.md): implement tickets through vertical slices and review.
+- [improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md): find high-leverage architecture improvements.
+- [v0-app-prompt](./skills/engineering/v0-app-prompt/SKILL.md): create structured v0 implementation prompts.
 
-Skills fall into two distinct execution tiers:
+### Model-invoked
 
-1. **User-Invoked Orchestration**: Slash commands (`/workflow-router`, `/grill-with-docs`, `/to-spec`, etc.) typed directly by the human operator to initiate and orchestrate multi-step engineering workflows.
-2. **Model-Invoked Discipline**: Reusable primitive skills (`tdd`, `code-review`, `diagnosing-bugs`, `domain-modeling`, `codebase-design`, `prototype`, etc.) automatically reached for by the agent or invoked to enforce rigorous technical standards.
+- [prototype](./skills/engineering/prototype/SKILL.md): answer design questions with throwaway code.
+- [diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md): diagnose hard bugs through tight feedback loops.
+- [research](./skills/engineering/research/SKILL.md): investigate questions against primary sources.
+- [tdd](./skills/engineering/tdd/SKILL.md): build vertical slices with red-green-refactor.
+- [domain-modeling](./skills/engineering/domain-modeling/SKILL.md): sharpen domain language and ADRs.
+- [codebase-design](./skills/engineering/codebase-design/SKILL.md): design deep modules and clean seams.
+- [code-review](./skills/engineering/code-review/SKILL.md): review standards and specification compliance.
+- [resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md): resolve conflicts by intent.
+- [wizard](./skills/engineering/wizard/SKILL.md): generate interactive procedures for human-only steps.
 
----
+## Productivity
 
-## Canonical Engineering Workflow
+### User-invoked
 
-```
-                    USER REQUEST
-                         │
-                         ▼
-                  workflow-router
-                         │
-            ┌────────────┼────────────┐
-            │            │            │
-           NEW          BUG       EXISTING CODE
-            │            │            │
-            ▼            ▼            ▼
-       grill-with-docs  diagnosing   improve-codebase-
-            │             bugs         architecture
-            ▼            │            │
-         to-spec          │            │
-            │              │            │
-            ▼              │            │
-       to-tickets          │            │
-            │              │            │
-            └──────────────┼────────────┘
-                           ▼
-                       implement
-                           │
-                           ▼
-                          tdd
-                           │
-                           ▼
-                      code-review
-                           │
-                           ▼
-                         done
-```
+- [grill-me](./skills/productivity/grill-me/SKILL.md): interview a plan without writing repository docs.
+- [handoff](./skills/productivity/handoff/SKILL.md): write a portable handoff for another session.
+- [teach](./skills/productivity/teach/SKILL.md): learn a concept over multiple sessions.
+- [to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md): prepare questions for another decision-maker.
+- [wait-what](./skills/productivity/wait-what/SKILL.md): re-explain a message that did not land.
 
-### Specialized Pathways
+### Model-invoked
 
-- **v0 UI Prompting**: Idea / `to-spec` / Screenshot → `v0-app-prompt` → v0 generation → inspect / `prototype` → `implement`
-- **Large / Foggy Projects**: `wayfinder` → `research` / `domain-modeling` / `codebase-design` → `to-spec` → `to-tickets` → `implement`
-- **UI / Logic Uncertainty**: `prototype` → learn & observe → `grill-with-docs` / `to-spec`
-- **Merge & Rebase Conflicts**: `resolving-merge-conflicts` → intent analysis → resolution → `tdd` test verification
-- **Human-Only Operational Steps**: `wizard` → interactive bash script → human execution → agent verification
+- [grilling](./skills/productivity/grilling/SKILL.md): stress-test a plan, decision, or idea.
+- [writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md): write skills and other agent-facing documents.
 
----
-
-## The Complete Engineering Skill Map
-
-| Skill | Category | Type | Purpose |
-|---|---|---|---|
-| [`workflow-router`](./skills/engineering/workflow-router/SKILL.md) | Routing | User-invoked | Route arbitrary engineering requests to the appropriate skill flow |
-| [`setup-skills`](./skills/engineering/setup-skills/SKILL.md) | Setup | User-invoked | Configure project issue tracker, triage labels, and domain doc layout |
-| [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) | Specification | User-invoked | Sharpen an idea by interview while capturing domain terms & ADRs |
-| [`to-spec`](./skills/engineering/to-spec/SKILL.md) | Specification | User-invoked | Synthesize conversation context into a formal spec published to tracker |
-| [`to-tickets`](./skills/engineering/to-tickets/SKILL.md) | Slicing | User-invoked | Break spec into tracer-bullet vertical slices with explicit blocking edges |
-| [`implement`](./skills/engineering/implement/SKILL.md) | Execution | User-invoked | Build tickets using TDD at testing seams and close out with code review |
-| [`triage`](./skills/engineering/triage/SKILL.md) | Triage | User-invoked | Move incoming issues and PRs through a state machine of triage roles |
-| [`wayfinder`](./skills/engineering/wayfinder/SKILL.md) | Planning | User-invoked | Chart multi-session large projects as decision maps on issue tracker |
-| [`improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) | Refactoring | User-invoked | Surface deepening opportunities and present visual HTML candidate reports |
-| [`v0-app-prompt`](./skills/engineering/v0-app-prompt/SKILL.md) | UI Generation | User-invoked | Generate optimized implementation prompts for v0 by Vercel |
-| [`grilling`](./skills/productivity/grilling/SKILL.md) | Primitive | Model-invoked | Relentless interview primitive for stress-testing decisions and ideas |
-| [`domain-modeling`](./skills/engineering/domain-modeling/SKILL.md) | Domain | Model-invoked | Build and sharpen project domain glossary (`CONTEXT.md`) and ADRs |
-| [`codebase-design`](./skills/engineering/codebase-design/SKILL.md) | Design | Model-invoked | Vocabulary and principles for designing deep modules and seams |
-| [`research`](./skills/engineering/research/SKILL.md) | Research | Model-invoked | Investigate questions against primary sources and capture cited findings |
-| [`tdd`](./skills/engineering/tdd/SKILL.md) | Quality | Model-invoked | Red-green-refactor loop at defined integration and testing seams |
-| [`diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md) | Debugging | Model-invoked | Gated, evidence-driven bug diagnosis loop with tight feedback loops |
-| [`prototype`](./skills/engineering/prototype/SKILL.md) | Experiment | Model-invoked | Disposable prototyping (logic state-machines or UI variants) |
-| [`code-review`](./skills/engineering/code-review/SKILL.md) | Quality | Model-invoked | Two-axis code review (Standards + Specification) for diffs |
-| [`resolving-merge-conflicts`](./skills/engineering/resolving-merge-conflicts/SKILL.md) | Git | Model-invoked | Intent-preserving git merge/rebase conflict resolution |
-| [`wizard`](./skills/engineering/wizard/SKILL.md) | Operations | Model-invoked | Generate interactive bash scripts for manual human operations |
-
----
-
-## Setup & Installation
+## Installation
 
 ```bash
 npx skills@latest add louis-salvosa0101/agentic-coding-skills
 ```
 
-After installation, run `/setup-skills` once per repository to configure your issue tracker (GitHub, GitLab, or Local Markdown) and domain documentation paths.
-
----
-
-## Key Differences from Upstream (`mattpocock/skills`)
-
-1. **Strict Engineering Scope**: Excludes non-engineering productivity, social media, writing beats, framework-specific ecosystems, or personal workflow skills.
-2. **Project-Neutral Naming**: Replaces author-specific skill names (`ask-matt` → `workflow-router`, `setup-matt-pocock-skills` → `setup-skills`).
-3. **Decoupled Architecture**: All skills reference generic project configuration pointers (`/setup-skills`, `.scratch/` or tracker configs) rather than hardcoded personal defaults.
+Run `/setup-skills` once per project before using the engineering workflow.
