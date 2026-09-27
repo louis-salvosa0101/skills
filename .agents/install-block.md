@@ -24,12 +24,12 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 
 ## Codex, and other agents: skills.sh
 
-The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/louis-salvosa0101/agentic-coding-skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
+The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/louis-salvosa0101/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
 
 <canonical-block name="skills-sh-whole-set">
 
 ```bash
-npx skills@latest add louis-salvosa0101/agentic-coding-skills
+npx skills@latest add louis-salvosa0101/skills
 ```
 
 Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take: make sure `setup-skills` is one of them.**
@@ -41,7 +41,7 @@ Pick the skills you want, and which coding agents to install them on. **The inst
 <canonical-block name="skills-sh-one-skill">
 
 ```bash
-npx skills@latest add louis-salvosa0101/agentic-coding-skills --skill=<name>
+npx skills@latest add louis-salvosa0101/skills --skill=<name>
 ```
 
 ```bash
@@ -58,4 +58,4 @@ The plugin is a managed, read-only bundle you subscribe to. skills.sh writes fil
 
 ## Not the install story
 
-`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add louis-salvosa0101/agentic-coding-skills`, then `/plugin install agentic-coding-skills@louis-salvosa0101`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork), and is **not** documented to users.
+`.claude-plugin/marketplace.json` makes the repo its own single-plugin marketplace (`/plugin marketplace add louis-salvosa0101/skills`, then `/plugin install agentic-coding-skills@louis-salvosa0101`). The official listing supersedes it. It is kept as a fallback for installing the repo directly (an unreleased commit, or a fork), and is **not** documented to users.

@@ -47,7 +47,7 @@ A complete, project-neutral collection of engineering and productivity skills fo
 ## Installation
 
 ```bash
-npx skills@latest add louis-salvosa0101/agentic-coding-skills
+npx skills@latest add louis-salvosa0101/skills
 ```
 
 Run `/setup-skills` once per project before using the engineering workflow.
