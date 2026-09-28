@@ -65,9 +65,38 @@ Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEX
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
+- The `## Parallel Development Workflow` section to add to the same instruction file
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
 
 Let them edit before writing.
+
+The parallel-development section is repository-wide guidance for multiple developers or AI coding agents. Keep it concise and practical. It must cover:
+
+- **Task ownership**: each developer or agent owns an assigned issue in the configured tracker or a clearly defined task, checks dependencies, avoids duplicated work, and coordinates significant overlap before implementation.
+- **Task decomposition**: prefer independently implementable, independently testable, clearly scoped issues assigned to one developer or agent, with explicit dependencies and minimal unnecessary file overlap. Do not split work artificially when tasks genuinely need to be implemented together. Prefer focused issues such as student authentication, an admin dashboard, attendance reports, and a student profile over broad frontend and backend issues.
+- **Branching**: normal feature work starts from the latest `main` on a dedicated descriptive branch, with one issue normally corresponding to one branch, never directly on `main`. Include this example:
+
+  ```text
+  git switch main
+  git pull origin main
+  git switch -c feature/<task-name>
+  ```
+
+- **Implementation**: stay within the assigned task, follow the specification and ticket acceptance criteria, avoid unrelated refactoring, and run relevant tests before opening a Pull Request.
+- **Shared files**: take extra care with schemas, migrations, routing, global styles, shared components and utilities, configuration, dependencies, and shared types. Isolate changes where possible, coordinate when another task is active, and never overwrite or revert another developer's work.
+- **Commits and Pull Requests**: keep commits focused; the normal path is feature branch, commit, push, Pull Request, review, tests, then merge into `main`. Include a representative push command such as `git push -u origin feature/authentication`.
+- **Keeping branches current**: when `main` advances, update the feature branch deliberately and test afterward:
+
+  ```text
+  git switch main
+  git pull origin main
+  git switch feature/<task-name>
+  git merge main
+  ```
+
+- **Merge conflicts and Git safety**: understand both sides, preserve intended behavior, test the result, and commit the resolution. Never force-push `main`, delete another developer's branch without authorization, overwrite uncommitted work, commit secrets, or reset/discard work belonging to another developer. Prefer safe, reversible operations.
+
+Make the section compatible with the existing flow: `/grill-with-docs` to `/to-spec` to `/to-tickets` to independent issues in the configured tracker, then one `/implement <issue>` run per assigned issue and a Pull Request per branch when the repository uses a Pull Request workflow. The section establishes repository-wide rules; it does not change the responsibilities of `/to-spec`, `/to-tickets`, `/implement`, or `/code-review`.
 
 ### 4. Write
 
@@ -110,6 +139,13 @@ Then write the docs files using the seed templates in this skill folder as a sta
 - [domain.md](./domain.md): domain doc consumer rules + layout
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
+
+Update the selected instruction file safely:
+
+- If `## Parallel Development Workflow` is absent, add the drafted section once, near the existing task workflow or Git guidance when those sections exist.
+- If that heading already exists, update that section in place rather than appending another copy. Preserve user-authored instructions and merge in only missing or stale setup guidance; do not overwrite unrelated sections or custom rules.
+- Treat an existing equivalent parallel-development section as the same section when it is clearly serving this purpose. Consolidate it under the stable heading where practical instead of creating a duplicate.
+- Keep the operation idempotent. A second `/setup-skills` run must leave one parallel-development section and must not duplicate its rules.
 
 ### 5. Done
 
