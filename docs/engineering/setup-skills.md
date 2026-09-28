@@ -2,8 +2,6 @@
 
 `setup-skills` answers three questions about one repo: where issues live, what the triage labels are called, and where the domain docs sit. It records the answers as markdown files under `docs/agents/`.
 
-It also adds a project-level `## Parallel Development Workflow` section to the existing `CLAUDE.md` or `AGENTS.md`. That section gives multiple developers or AI coding agents shared rules for issue ownership, focused feature branches, task decomposition, shared-file coordination, Pull Requests, branch updates, and merge-conflict safety.
-
 Those files are the only thing that varies between repos. The skills themselves are identical everywhere; they read `docs/agents/issue-tracker.md` at run time and do what it says. That is why the set is not tied to GitHub, and why no skill file ever needs editing to point it somewhere else. Invoking it with "link the skills to a custom issue tracker" works with anything you can connect to programmatically, with zero changes to the skills.
 
 It is a prompt-driven skill, not a deterministic script. It reads your `git remote`, your existing `CLAUDE.md`, your existing `CONTEXT.md`, proposes what it found, and waits for you to confirm before writing anything.
@@ -24,7 +22,6 @@ It writes into the repo you run it in:
 | `domain.md` | `docs/agents/` |
 | `triage-labels.md` | `docs/agents/`, only when the `triage` skill is installed |
 | An `## Agent skills` block | whichever of `CLAUDE.md` / `AGENTS.md` already exists |
-| A `## Parallel Development Workflow` section | the same instruction file |
 
 All of it is committed markdown. There is no user-level or global mode: the config lives in the repo, so every repo gets its own copy.
 
@@ -90,16 +87,8 @@ One long-standing complaint says yes, in these words: *"having a skill to set up
 - An `## Agent skills` section appears in the instruction file your harness actually reads, with a one-line summary pointing at each of those files.
 - The tracker it proposed matches the remote you really use, and the label strings match labels that really exist in your tracker.
 - Afterwards, `/to-tickets` publishes without asking you where issues live, and `/triage` applies labels rather than inventing them.
-- Independent tickets can be assigned to separate developers or agents, each working from its own feature branch and opening a Pull Request into `main`.
-- Shared-file changes are coordinated, and a second setup run does not create duplicate parallel-workflow sections.
 - Nothing in the skill files themselves changed. If setup edited a `SKILL.md`, something went wrong.
 
 ## Where it fits
 
 `setup-skills` is the **run-once setup** for the engineering flow, the precondition everything else assumes rather than a step in the chain. Its neighbours are its readers: [triage](https://aihero.dev/skills-triage), which applies the label vocabulary written here; [to-spec](https://aihero.dev/skills-to-spec) and [to-tickets](https://aihero.dev/skills-to-tickets), which publish into the tracker named here; and [wayfinder](https://aihero.dev/skills-wayfinder), which reads the "Wayfinding operations" section of the same tracker file to know how maps and child [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) are stored. The domain-doc layout it records is the one [domain-modeling](https://aihero.dev/skills-domain-modeling) fills in later: it creates `CONTEXT.md` and ADRs lazily, when a term or decision actually gets resolved, so an empty repo after setup is the expected state. For which skill to reach for next, [workflow-router](https://aihero.dev/skills-workflow-router) routes the whole set.
-
-The intended multi-agent path is:
-
-`/setup-skills` -> `AGENTS.md` -> `/grill-with-docs` -> `/to-spec` -> `/to-tickets` -> GitHub Issues -> one feature branch and `/implement` run per independent issue -> Pull Requests -> review and merge into `main`.
-
-`to-tickets` still defines the ticket shape and blocking edges, and `implement` still implements an assigned ticket. The generated project instructions establish ownership and coordination rules around those skills. When two tickets touch shared files, coordinate the integration rather than accepting one side blindly during a conflict.
