@@ -19,7 +19,8 @@ The route most work travels. You have an idea and want it built.
    - **`/handoff`** out, then open a fresh session against that file,
    - **`/prototype`** to answer the question with throwaway code,
    - **`/handoff`** back what you learned, and reference it from the original idea thread.
-3. **Branch: is this a multi-session build?**
+3. **Shape the experience and implementation plan when the work needs them.** For a product-facing feature where the user journey or interface should not be invented during coding, run **`/ui-spec`** to write `docs/ux-spec.md`, then **`/tech-spec`** to inspect that UX and the codebase and write `docs/technical-spec.md`. These are complementary planning artifacts: `ui-spec` decides what the user experiences; `tech-spec` decides the simplest way to preserve it. Skip either only when its decisions are already settled and available in an equivalent approved artifact.
+4. **Branch: is this a multi-session build?**
    - **Yes** → **`/to-spec`** (turn the thread into a spec), then **`/to-tickets`** to split it into tracer-bullet tickets, each declaring its **blocking edges**. On a local tracker that's one file per ticket under `.scratch/<feature>/issues/`, worked blockers-first by hand; on a real tracker the edges become native blocking links, so any ticket whose blockers are done can be grabbed: kick off **`/implement`** per ticket, **`/clear`ing context between each one**. Each ticket is self-contained, so the last one's context is disposable.
    - **No** → **`/implement`** right here, in the same context window.
 

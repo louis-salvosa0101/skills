@@ -1,0 +1,5 @@
+interface:
+  display_name: "Tech Spec"
+  short_description: "Plan how to implement an approved UX"
+policy:
+  allow_implicit_invocation: false

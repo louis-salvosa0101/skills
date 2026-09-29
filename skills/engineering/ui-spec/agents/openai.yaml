@@ -1,0 +1,5 @@
+interface:
+  display_name: "UI Spec"
+  short_description: "Define an implementation-ready user experience"
+policy:
+  allow_implicit_invocation: false
