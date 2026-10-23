@@ -9,8 +9,6 @@
 - [implement-spec](./implement-spec/SKILL.md)
 - [retro](./retro/SKILL.md)
 - [setup-skills](./setup-skills/SKILL.md)
-- [ui-spec](./ui-spec/SKILL.md)
-- [tech-spec](./tech-spec/SKILL.md)
 - [to-spec](./to-spec/SKILL.md)
 - [to-tickets](./to-tickets/SKILL.md)
 - [implement](./implement/SKILL.md)

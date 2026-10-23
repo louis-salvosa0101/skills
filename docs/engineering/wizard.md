@@ -62,7 +62,7 @@ No. The agent writes a script; it doesn't run it. You run the script yourself, a
 
 Not mid-run. There is no back button: the stages run forward, and a wrong answer on stage 3 means Ctrl-C and re-run. Re-running is cheap by design: any value already written to `.env` is offered back as a default, so you press Enter through the stages you got right and retype only the wrong one. This came up in the launch week and hasn't been closed since: "loved it! One thing though, is there a way to go back and correct what you've entered?"
 
-There's a related open bug. Arrow keys in an `ask` prompt insert `^[[D` / `^[[C` instead of moving the cursor, because the prompt uses `read -r` rather than Readline ([issue #741](https://github.com/louis-salvosa0101/agentic-coding-skills/issues/741)). Backspace works; arrow keys don't. Delete back to the mistake rather than moving the cursor into it.
+Visible `ask` prompts now use Readline, so arrow keys can move within an answer. There is still no back button between stages.
 
 **Does it know what I've already set up?**
 

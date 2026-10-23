@@ -64,9 +64,9 @@ Known gap, still open. The file-selection rule is "edit `CLAUDE.md` if it exists
 
 **It didn't create my triage labels.**
 
-It doesn't. `docs/agents/triage-labels.md` is a *mapping*: it tells `/triage` which strings in your tracker correspond to the five canonical roles. It does not run `gh label create`. On a fresh GitHub repo the labels genuinely do not exist yet, and this has been filed as a bug more than once. Two follow-ons:
+It now creates missing configured labels on GitHub or GitLab. `docs/agents/triage-labels.md` remains the mapping between canonical roles and your tracker's label strings. Two follow-ons:
 
-- If your tracker already uses the canonical names, the mapping is an identity table and there is nothing to configure. That is the intended common case, not a missing step.
+- If your tracker already uses the canonical names, the mapping is an identity table and setup leaves those labels in place.
 - [wayfinder](https://aihero.dev/skills-wayfinder)'s `wayfinder:map` and `wayfinder:<type>` labels are not created here either, and `gh issue create --label <missing>` fails outright rather than creating the label. Create them by hand before the first wayfinder run on a GitHub repo.
 
 **Can I configure the other skills' behaviour here ([grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) cadence, question format, tone)?**

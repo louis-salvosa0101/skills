@@ -26,7 +26,7 @@ The tracker-dependent routes (triage, `to-spec`, `to-tickets`, `implement`) assu
 
 The word the skill gives you to think with is **flow**: a path *through* the skills, not a single one. Naming your situation places you on a flow at a step, which is a different answer from "here is the skill that matches your keywords". Four kinds of route exist, and the skill itself carries them in full:
 
-- **The main flow**, idea to ship. Grill, then add [ui-spec](ui-spec.md) and [tech-spec](tech-spec.md) when a product-facing change needs its experience and implementation plan made explicit, then spec and tickets. Implement tickets one at a time with `implement`, or orchestrate the ticket graph with `implement-spec`. `ui-spec` writes the experience; `tech-spec` preserves it in the simplest implementation plan. The flow also has a prototype detour when a question needs runnable code to settle, and the spec-and-tickets split, which only earns its cost when the build spans more than one session. Use `pr` when preparing the pull request body.
+- **The main flow**, idea to ship. Grill, then write a spec and tickets when the build spans more than one session. Implement tickets one at a time with `implement`, or orchestrate the ticket graph with `implement-spec`. The flow also has a prototype detour when a question needs runnable code to settle. Use `pr` when preparing the pull request body, then run `retro` before clearing the session to capture improvements to the agent environment.
 - **On-ramps**, for a situation that generates work and then merges onto the main flow: incoming bug reports, something broken, or an effort too foggy and too large to hold in one session.
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
 - **Retrospective**, after a build, to improve the agent environment for the next session.
@@ -50,7 +50,7 @@ Two of those are routinely got wrong, which is why the router carries the order 
 
 **Isn't there just a list of the skills in the right order?**
 
-People keep asking for one in the README. This skill is that list: it is what it exists for. A static table would say `grill-with-docs → ui-spec → tech-spec → to-spec → to-tickets → implement → code-review` and be wrong for most situations, because the interesting parts are the branches: does the change need explicit UX and technical artifacts, is there a codebase, does the build span sessions, can this question be settled by talking. The honest cost is that the router is hand-maintained and lags the repo. `/grilling` and `/resolving-merge-conflicts` both shipped long before the router named them.
+People keep asking for one in the README. This skill is that list: it is what it exists for. A static table would say `grill-with-docs → to-spec → to-tickets → implement → code-review` and be wrong for most situations, because the interesting parts are the branches: is there a codebase, does the build span sessions, can this question be settled by talking. The honest cost is that the router is hand-maintained and lags the repo. `/grilling` and `/resolving-merge-conflicts` both shipped long before the router named them.
 
 **It told me half the skills aren't installed.**
 
@@ -58,7 +58,7 @@ A known bug, unfixed. Most of the skills the router routes you through set `disa
 
 **It described a skill's behaviour, and the skill doesn't do that.**
 
-Also real, also unfixed. The router answers from its own one-line summary of each skill rather than from the skill. One detailed report tracked three instances in a single session, including a recommendation to skip [to-spec](https://aihero.dev/skills-to-spec) on the strength of the gloss "turn the thread into a spec": `to-spec/SKILL.md` was never opened. In every case it verified only after the user pushed back, and never on its own initiative. Skipping `to-spec` there cost a real seam check, and the tickets that came out undercounted the work. When the router asserts something load-bearing about another skill, ask it to open that `SKILL.md` first. The same applies to questions the map does not cover at all, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode): that answer is the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s inference, not something written down here.
+The router's summaries can lag behind a skill. It now reads a skill's `SKILL.md` before describing its behavior or recommending that you skip it. For questions the map does not cover, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode), its answer remains an inference.
 
 **Why is it prose instead of a numbered checklist?**
 

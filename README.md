@@ -13,8 +13,6 @@ A complete, project-neutral collection of engineering and productivity skills fo
 - [implement-spec](./skills/engineering/implement-spec/SKILL.md): implement a spec's ticket graph on one integration branch.
 - [retro](./skills/engineering/retro/SKILL.md): find agent environment improvements from a coding session.
 - [setup-skills](./skills/engineering/setup-skills/SKILL.md): configure the project tracker and documentation layout.
-- [ui-spec](./skills/engineering/ui-spec/SKILL.md): define an implementation-ready user experience.
-- [tech-spec](./skills/engineering/tech-spec/SKILL.md): plan how to implement an approved UX.
 - [to-spec](./skills/engineering/to-spec/SKILL.md): turn conversation into a specification.
 - [to-tickets](./skills/engineering/to-tickets/SKILL.md): split a specification into blocking implementation tickets.
 - [implement](./skills/engineering/implement/SKILL.md): implement tickets through vertical slices and review.
